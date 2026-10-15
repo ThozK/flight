@@ -41,7 +41,7 @@ const desired=desiredPhotos(photoPriority(tiles,pos.x,pos.z,TILE,center),TILE);i
 const cached=tiles.filter(p=>p.detailTexture);if(cached.length>=DETAIL_LIMIT){const oldest=cached.filter(p=>!desired.includes(p)).sort((a,b)=>a.lastUsed-b.lastUsed)[0];if(oldest)releaseDetail(oldest);else return}
 t.detailTexture=configureTexture(new THREE.CanvasTexture(canvas));t.lastUsed=performance.now();setTexture(t,t.detailTexture)
 }catch{t.retryAfter=performance.now()+30000}finally{t.busy=false;detailActive--}}
-function streamPhotos(){if(!started||document.hidden)return;const ranked=photoPriority(tiles,pos.x,pos.z,TILE,center),desired=desiredPhotos(ranked,TILE),now=performance.now();for(const p of ranked){if(desired.includes(p.tile))p.tile.lastUsed=now;if(p.distance>TILE*2.3)releaseDetail(p.tile)}for(const t of desired){if(detailActive>=DETAIL_JOBS)break;if(!t.detailTexture&&!t.busy&&!(t.retryAfter>now))void upgradePhoto(t)}const complete=desired.filter(t=>t.detailTexture).length;$('#photo-status').textContent=`近景 ${complete}/${desired.length} 高精細${detailActive?' · 更新中':''}`}
+function streamPhotos(){if(!started||document.hidden)return;const ranked=photoPriority(tiles,pos.x,pos.z,TILE,center),desired=desiredPhotos(ranked,TILE),now=performance.now();for(const p of ranked){if(desired.includes(p.tile))p.tile.lastUsed=now;if(p.distance>TILE*2.8)releaseDetail(p.tile)}for(const t of desired){if(detailActive>=DETAIL_JOBS)break;if(!t.detailTexture&&!t.busy&&!(t.retryAfter>now))void upgradePhoto(t)}const complete=desired.filter(t=>t.detailTexture).length;$('#photo-status').textContent=`近景 ${complete}/${desired.length} 高精細${detailActive?' · 更新中':''}`}
 
 function disposeTile(t){t.disposed=true;if(t.mesh){scene.remove(t.mesh);t.mesh.traverse(o=>{if(o.geometry)o.geometry.dispose()});t.mesh.material.dispose()}t.baseTexture?.dispose();t.detailTexture?.dispose();t.image=null;t.heights=null}
 function readyTile(x,z){const tx=Math.floor(x/TILE+center.x),ty=Math.floor(z/TILE+center.y);return tiles.find(t=>t.x===tx&&t.y===ty&&t.heights&&t.baseTexture)}
@@ -71,3 +71,6 @@ addEventListener('resize',()=>{if(!renderer)return;camera.aspect=innerWidth/inne
 const speeds=[85,170,340,680];
 $('#speed').onchange=()=>{const value=Number($('#speed').value);speed=speeds.includes(value)?value:85;$('#speed-display').innerHTML=`${speed} <small>km/h</small>`;notify(`飛行速度を ${speed} km/h に変更しました。`)};
 $('#data-note').textContent='航空写真・標高を取得中';init();
+
+// Keep the mobile view clear until flight details are requested.
+$('#details-toggle').addEventListener('click',()=>{const open=document.body.classList.toggle('flight-details');$('#details-toggle').setAttribute('aria-expanded',String(open));$('#details-toggle').textContent=open?'閉じる':'飛行設定';$('#details-toggle').setAttribute('aria-label',open?'飛行設定を閉じる':'出発エリア・飛行速度を表示')});
