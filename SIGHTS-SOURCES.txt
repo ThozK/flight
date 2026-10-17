@@ -1,0 +1,11 @@
+名所座標の確認日: 2026-10-17
+緯度経度: WGS84（世界測地系）。各地点のanchorに示す対象にピンを表示。
+広域の湖・海岸・公園・宿場等は出典で確認できる代表点であり、測量した中心点ではありません。
+出発位置departureはピンとは独立。通常は900m南から北向きに出発。
+出典URLと確認対象はregion.mjsの各名所に記録。
+確認記録: SIGHTS-AUDIT.md
+
+『日本歴史地名大系』施設・地点項目データセット（CODH作成） doi:10.20676/00000456 / CC BY 4.0
+『日本歴史地名大系』地名項目データセット（CODH作成） / CC BY 4.0
+山頂: 国土地理院ベクトルタイル由来のGSI-VectorTile-MountainDB。MOUNTAIN-LICENSE.txt参照。
+OpenStreetMap由来の地点: © OpenStreetMap contributors / ODbL。各Mapcarta出典参照。

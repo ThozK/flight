@@ -27,3 +27,88 @@ header,.intro,.telemetry,footer{ text-shadow:0 1px 8px #f2f4e9cc}footer a{color:
 @media(max-width:700px),(max-height:500px){
  .flight-details .map,.flight-details .telemetry,.flight-details .store-legend{display:none}
 }
+
+/* Touch controls use shapes and preserve native select interaction. */
+button,header,.controls,#world{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}button{touch-action:manipulation}#world{touch-action:none}button svg{display:block;width:22px;height:22px;margin:auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}.top-right button{min-width:38px}.controls button{touch-action:none}
+@media(max-width:700px),(max-height:500px){.flight-details .controls>div{pointer-events:auto;min-width:0}.flight-details .speed-setting select{pointer-events:auto;touch-action:manipulation;user-select:auto;font-size:16px;max-width:175px}header{z-index:5}.controls{z-index:4}.top-right button{padding:0 8px}.brand{letter-spacing:0}.brand small{letter-spacing:1px}}
+@media(hover:hover) and (pointer:fine) and (min-width:701px){.intro,.store-legend,.map,.telemetry,.controls,footer{opacity:.16;transition:opacity .22s}.intro:hover,.store-legend:hover,.store-legend:focus-within,.map:hover,.telemetry:hover,.controls:hover,.controls:focus-within,footer:hover,footer:focus-within{opacity:1}.intro{pointer-events:auto}.intro>*{pointer-events:none}}
+
+.github-cat{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(7px,env(safe-area-inset-bottom));z-index:6;display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:#253e36;opacity:.55;transition:opacity .2s;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.github-cat svg{width:23px;height:23px;pointer-events:none}.github-cat:hover,.github-cat:focus-visible{opacity:1}footer{padding-right:40px}
+
+/* Welcome text belongs to the brand, not to an invisible hover region. */
+.intro,.intro:hover{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s,visibility .6s}
+body.intro-welcome .intro,body.intro-reveal .intro{opacity:1;visibility:visible;pointer-events:none}
+@media(max-width:700px),(max-height:500px){body.intro-welcome .intro,body.intro-reveal .intro{display:block;top:85px;left:22px;max-width:75%}.intro .eyebrow,.intro p,.intro .location{display:none}.intro h1{font-size:25px}}
+
+.boundary-key{display:flex;gap:12px;font-size:8px;margin:4px 0;color:#526958}.boundary-key span:first-child{color:#8b621b}.boundary-source{display:block;font-size:7px;color:inherit;margin:4px 0;text-decoration:none}@media(min-width:701px) and (min-height:501px){.map{width:320px}#map{height:210px}.map-title{margin-bottom:7px}}
+
+.map .boundary-key,.map .boundary-source,.map .map-foot{display:none}
+
+/* Heading compass stays visible independently of the information panels. */
+.compass{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:64px;width:84px;height:84px;z-index:3;pointer-events:none;user-select:none}.compass svg{width:100%;height:100%;overflow:visible}.compass svg>circle:first-child{fill:#f7f7eccc;stroke:#38534b55;stroke-width:1}.compass text{text-anchor:middle;fill:#365148;font:10px Arial,sans-serif}.north-needle{fill:#b75540}.south-needle{fill:#536d78}.compass-hub{fill:#f7f7ec;stroke:#365148;stroke-width:1}
+.controls #aircraft-cycle{width:auto;height:auto;min-height:40px;max-width:230px;border-radius:8px;font-size:12px;padding:8px 12px;touch-action:manipulation;white-space:normal;background:#ffffffaa}.controls #aircraft-cycle:active{background:#375e47;color:white}
+@media(max-width:700px),(max-height:500px){.compass{width:66px;height:66px;bottom:max(123px,calc(env(safe-area-inset-bottom) + 110px))}.flight-details .controls #aircraft-cycle{width:auto;height:auto;min-height:44px;font-size:12px;padding:8px;max-width:175px}.flight-details .controls{gap:5px}}
+
+#map{cursor:crosshair;touch-action:manipulation}
+
+.map-destination{display:none}
+@media(min-width:701px) and (min-height:501px){
+ .map,.map:hover,.map:focus-within{opacity:1}
+ .map-destination{display:block;border-top:1px solid #38534b22;margin-top:8px;padding-top:5px}
+ .map-destination .speed-setting{justify-content:space-between;font-size:11px;gap:10px;margin:4px 0}
+ .map-destination #destination{width:180px;font-size:12px;padding:8px}
+}
+
+.map-hint{margin:5px 0 8px;font-size:10px;line-height:1.5;color:#365148}
+
+#mountain-labels{position:fixed;inset:0;pointer-events:none;z-index:2}.mountain-label{position:absolute;transform:translate(-50%,-100%);padding:5px 9px;border-radius:6px;background:#f5f4e5c9;color:#29473c;border-bottom:1px solid #476f55;font-size:12px;white-space:nowrap;box-shadow:0 1px 8px #193c3220;user-select:none}.mountain-label[hidden]{display:none}@media(max-width:700px){.mountain-label{font-size:10px;padding:4px 7px}}
+
+.mountain-marker{position:absolute;top:0;left:0;will-change:transform;pointer-events:none;user-select:none}.mountain-marker[hidden]{display:none}.mountain-marker span{position:absolute;left:0;bottom:5px;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;white-space:nowrap;text-shadow:0 1px 3px #142b26,1px 0 3px #142b26,-1px 0 3px #142b26}.mountain-marker i{position:absolute;left:0;top:0;width:1px;transform-origin:top center;background:#ffffffd9;box-shadow:0 0 2px #18372a88}@media(max-width:700px){.mountain-marker span{font-size:11px}}
+
+.altitude-controls{position:fixed;left:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:4}.altitude-controls button{width:42px;height:42px;border:1px solid #38534b33;border-radius:50%;background:#f7f7edbb;touch-action:none}.altitude-controls button.held{background:#375e47;color:white}@media(hover:hover) and (pointer:fine){.altitude-controls{opacity:.25;transition:opacity .2s}.altitude-controls:hover,.altitude-controls:focus-within{opacity:1}}
+
+/* Flight instruments remain readable in both desktop and mobile layouts. */
+.telemetry,.telemetry:hover,.flight-details .telemetry{display:flex;opacity:1}
+@media(max-width:700px),(max-height:500px){
+ .telemetry,.flight-details .telemetry{position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:none;flex-wrap:nowrap;gap:18px;padding:7px 12px;background:#edf0e4d9;border-radius:9px;z-index:4;pointer-events:none}
+ .telemetry div>span{font-size:7px;letter-spacing:1px;margin-bottom:3px}.telemetry strong{font-size:17px}.telemetry small{font-size:9px}
+ footer{bottom:max(53px,calc(env(safe-area-inset-bottom) + 45px));max-width:calc(100% - 70px)}
+ .controls{bottom:max(79px,calc(env(safe-area-inset-bottom) + 68px))}.flight-details .controls{bottom:max(79px,calc(env(safe-area-inset-bottom) + 68px))}
+ .compass{bottom:max(154px,calc(env(safe-area-inset-bottom) + 142px))}
+}
+
+/* One-tap aircraft switching remains outside the mobile settings panel. */
+#aircraft-quick{display:none}
+@media(max-width:700px),(max-height:500px){
+ #aircraft-quick{display:grid;place-items:center;position:fixed;left:50%;transform:translateX(-50%);bottom:max(79px,calc(env(safe-area-inset-bottom) + 68px));width:52px;height:52px;padding:0;border:1px solid #38534b33;border-radius:50%;background:#f7f7ede8;box-shadow:0 2px 12px #173b3420;z-index:5;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+ #aircraft-quick svg{width:28px;height:28px}
+ #aircraft-quick:active{background:#375e47;color:white}
+ .flight-details #aircraft-quick{bottom:max(145px,calc(env(safe-area-inset-bottom) + 134px))}
+}
+
+.desktop-drawer{display:contents}.drawer-handle{display:none}
+@media(min-width:701px) and (min-height:501px){
+ .desktop-drawer{display:block;position:fixed;right:0;top:90px;bottom:70px;width:366px;max-width:calc(100vw - 24px);z-index:6;transform:translateX(calc(100% - 32px));transition:transform .25s ease}
+ .desktop-drawer:hover,.desktop-drawer:focus-within{transform:translateX(0)}
+ .drawer-handle{display:block;position:absolute;left:0;top:18px;width:32px;min-height:112px;padding:12px 7px;writing-mode:vertical-rl;letter-spacing:2px;font-size:11px;border:1px solid #38534b33;border-right:0;border-radius:10px 0 0 10px;background:#f5f7edc9;box-shadow:-2px 2px 12px #173b3418}
+ #desktop-drawer-content{height:100%;overflow:auto;overscroll-behavior:contain;padding:10px 12px 10px 42px;background:#edf0e4ed;border:1px solid #fff8;border-right:0;border-radius:14px 0 0 14px;visibility:hidden;opacity:0;transition:opacity .2s,visibility .2s}
+ .desktop-drawer:hover #desktop-drawer-content,.desktop-drawer:focus-within #desktop-drawer-content{visibility:visible;opacity:1}
+ .desktop-drawer .map,.desktop-drawer .store-legend{position:static;inset:auto;width:100%;margin:0;opacity:1;box-shadow:none;backdrop-filter:none}
+ .desktop-drawer .map{padding:12px}.desktop-drawer .store-legend{margin-top:12px;padding:12px}
+ .desktop-drawer #map{height:190px}.desktop-drawer .map-destination #destination{max-width:100%;width:175px}
+}
+@media(prefers-reduced-motion:reduce){.desktop-drawer,#desktop-drawer-content{transition:none}}
+
+/* Unified directional pad: altitude above/below, turn left/right, aircraft in the centre. */
+.flight-dpad{position:fixed;left:42px;bottom:74px;display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:3px;z-index:5;user-select:none;-webkit-user-select:none}
+.flight-dpad button,.flight-dpad #aircraft-quick,.flight-details .flight-dpad #aircraft-quick{display:grid;place-items:center;position:static;inset:auto;transform:none;width:44px;height:44px;min-height:44px;margin:0;padding:0;border:1px solid #38534b33;border-radius:12px;background:#f7f7ede8;box-shadow:0 2px 8px #173b3418;color:#253e36;touch-action:none}
+.flight-dpad #up{grid-area:1/2}.flight-dpad #left{grid-area:2/1}.flight-dpad #aircraft-quick{grid-area:2/2;touch-action:manipulation}.flight-dpad #right{grid-area:2/3}.flight-dpad #down{grid-area:3/2}
+.flight-dpad button:active,.flight-dpad button.held{background:#375e47;color:white}.flight-dpad #aircraft-quick svg{width:25px;height:25px}
+.controls #aircraft-cycle{display:none}
+@media(min-width:701px) and (min-height:501px){.controls{display:none}.telemetry{bottom:230px}}
+@media(max-width:700px),(max-height:500px){.flight-dpad{left:14px;bottom:max(79px,calc(env(safe-area-inset-bottom) + 68px))}.controls{display:none}.flight-details .controls{display:flex}.flight-details .flight-dpad{bottom:max(155px,calc(env(safe-area-inset-bottom) + 144px))}}
+
+/* Aircraft switching is independent of the directional pad. */
+#aircraft-quick,.flight-details #aircraft-quick{display:grid;place-items:center;position:fixed;left:50%;right:auto;top:auto;bottom:90px;transform:translateX(-50%);width:52px;height:52px;padding:0;border:1px solid #38534b33;border-radius:50%;background:#f7f7ede8;box-shadow:0 2px 12px #173b3420;z-index:5;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#aircraft-quick:active{background:#375e47;color:white}
+@media(max-width:700px),(max-height:500px){#aircraft-quick,.flight-details #aircraft-quick{bottom:max(79px,calc(env(safe-area-inset-bottom) + 68px))}.flight-details #aircraft-quick{bottom:max(155px,calc(env(safe-area-inset-bottom) + 144px))}}
